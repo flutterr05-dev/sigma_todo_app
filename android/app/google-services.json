@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "584074992321",
+    "project_id": "sigma-todo-app",
+    "storage_bucket": "sigma-todo-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584074992321:android:67a78f2c499c52dcad1240",
+        "android_client_info": {
+          "package_name": "com.example.sigma_todo_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584074992321-m0fvn2dglblk9u0oucbiembog6aeq3qf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sigma_todo_app",
+            "certificate_hash": "01ea1434712aa872cd575ef777145941015cbd98"
+          }
+        },
+        {
+          "client_id": "584074992321-0d3k72sgauanqc1r9l7edmoluatk06m9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB04zsAfzFOVRBOkIkRc_a1zzmTyjSwY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584074992321-0d3k72sgauanqc1r9l7edmoluatk06m9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
