@@ -12,11 +12,10 @@ class TodoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (_) => TodoDetails(todo: todo)),
-        // );
-        Get.find<TodoController>().addTodo(todo);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => TodoDetails(todo: todo)),
+        );
       },
       child: Container(
         padding: EdgeInsets.all(12),
