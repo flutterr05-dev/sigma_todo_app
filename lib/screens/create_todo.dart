@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sigma_todo_app/controller/todo_controller.dart';
 import 'package:sigma_todo_app/models/todo_model.dart';
-import 'package:uuid/uuid.dart';
 
 class CreateTodo extends StatefulWidget {
   const CreateTodo({super.key});

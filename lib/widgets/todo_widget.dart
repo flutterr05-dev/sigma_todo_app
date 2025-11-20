@@ -44,7 +44,9 @@ class TodoWidget extends StatelessWidget {
             ),
             Spacer(),
             IconButton(onPressed: () {}, icon: Icon(Icons.edit_rounded)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.delete_rounded)),
+            IconButton(onPressed: () {
+              Get.find<TodoController>().deleteTodo(todo.id);
+            }, icon: Icon(Icons.delete_rounded)),
           ],
         ),
       ),

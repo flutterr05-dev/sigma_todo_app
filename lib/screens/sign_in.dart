@@ -51,6 +51,7 @@ class _SignInState extends State<SignIn> {
                   }
 
                   ScaffoldMessenger.of(
+                    // ignore: use_build_context_synchronously
                     context,
                   ).showSnackBar(SnackBar(content: Text(message)));
                 },

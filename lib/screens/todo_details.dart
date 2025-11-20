@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sigma_todo_app/controller/todo_controller.dart';
 import 'package:sigma_todo_app/models/todo_model.dart';
+import 'package:uuid/uuid.dart';
 
 class TodoDetails extends StatelessWidget {
   final TodoModel todo;
@@ -9,6 +12,46 @@ class TodoDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(todo.title)),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          final controller = TextEditingController();
+          showDialog(
+            context: context,
+            builder: (val) => Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusGeometry.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(controller: controller),
+                    ElevatedButton(
+                      onPressed: () {
+                        var newTodo = todo;
+                        newTodo.items.add(
+                          TodoItems(
+                            id: Uuid().v1(),
+                            title: controller.text,
+                            isDone: false,
+                          ),
+                        );
+
+                        Get.find<TodoController>().setTodo(newTodo);
+                        Get.back();
+                        Get.off(() => TodoDetails(todo: newTodo));
+                      },
+                      child: Text("Add"),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+        child: Icon(Icons.add_rounded),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Column(

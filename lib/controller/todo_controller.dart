@@ -6,23 +6,63 @@ import 'package:sigma_todo_app/models/todo_model.dart';
 class TodoController extends GetxController {
   final firestore = FirebaseFirestore.instance;
   RxList<TodoModel> todos = RxList.empty();
+  List fetchedData = List.empty();
 
+  // Create
   addTodo(TodoModel todo) async {
     firestore
         .collection("todo")
-        .doc(Get.find<AuthController>().userId.value ?? "null")
-        .collection(todo.id)
+        .doc(Get.find<AuthController>().userId.value)
+        .collection("todoCollection")
         .add(todo.toJson());
+
+    getTodo();
   }
 
+  // Read
   getTodo() async {
     final doc = await firestore
         .collection("todo")
-        .doc(Get.find<AuthController>().userId.value ?? "null")
+        .doc(Get.find<AuthController>().userId.value)
+        .collection("todoCollection")
         .get();
 
-    for (var i in doc.data()!.keys) {
-      todos.add(TodoModel.fromJson(doc.data()![i]));
+    fetchedData = doc.docs;
+
+    todos.clear();
+    for (var i in fetchedData) {
+      todos.add(TodoModel.fromJson(i.data()));
     }
+  }
+
+  // Update
+  setTodo(TodoModel todo) async {
+    for (var i in fetchedData) {
+      if (i["id"] == todo.id) {
+        firestore
+            .collection("todo")
+            .doc(Get.find<AuthController>().userId.value ?? "null")
+            .collection("todoCollection")
+            .doc(i.id)
+            .set(todo.toJson());
+      }
+    }
+    getTodo();
+  }
+
+  // Delete
+  deleteTodo(String id) async {
+    for (var i in fetchedData) {
+      if (i["id"] == id) {
+        firestore
+            .collection("todo")
+            .doc(Get.find<AuthController>().userId.value ?? "null")
+            .collection("todoCollection")
+            .doc(i.id)
+            .delete();
+      }
+    }
+
+    getTodo();
   }
 }
